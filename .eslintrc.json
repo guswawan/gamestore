@@ -26,6 +26,10 @@
     "import/extensions": "off",
     "no-underscore-dangle": "off",
     "object-curly-newline": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "function-paren-newline": "off",
+    "eslint-disable-next-line": "off",
+    "implicit-arrow-linebreak": "off",
+    "comma-dangle": "off"
   }
 }

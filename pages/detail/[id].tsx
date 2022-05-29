@@ -15,18 +15,20 @@ export default function Detail() {
       name: '',
     },
   });
+  const [dataNominal, setDataNominal] = useState([]);
+  const [dataPayment, setDataPayment] = useState([]);
+
   const getVoucherDetailApi = useCallback(async (id) => {
     const data = await getDetailVoucher(id);
-    console.log('DATA', data);
-    setDataItem(data);
+    setDataItem(data.detail);
+    setDataNominal(data.detail.nominals);
+    setDataPayment(data.payment);
   }, []);
 
   useEffect(() => {
     if (isReady) {
       console.log('router ready', query.id);
       getVoucherDetailApi(query.id);
-    } else {
-      console.log('router not ready');
     }
   }, [isReady]);
 
@@ -50,7 +52,10 @@ export default function Detail() {
             <div className="col-xl-9 col-lg-8 col-md-7 ps-md-25">
               <TopUpItem data={dataItem} type="desktop" />
               <hr />
-              <TopUpForm />
+              <TopUpForm
+                dataNominals={dataNominal}
+                dataPayments={dataPayment}
+              />
             </div>
           </div>
         </div>
