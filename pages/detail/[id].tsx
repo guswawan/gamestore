@@ -20,14 +20,13 @@ export default function Detail() {
 
   const getVoucherDetailApi = useCallback(async (id) => {
     const data = await getDetailVoucher(id);
-    setDataItem(data.detail);
-    setDataNominal(data.detail.nominals);
-    setDataPayment(data.payment);
+    setDataItem(data.data.detail);
+    setDataNominal(data.data.detail.nominals);
+    setDataPayment(data.data.payment);
   }, []);
 
   useEffect(() => {
     if (isReady) {
-      console.log('router ready', query.id);
       getVoucherDetailApi(query.id);
     }
   }, [isReady]);
