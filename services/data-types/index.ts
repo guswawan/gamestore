@@ -30,3 +30,8 @@ export interface NominalsType {
   coinName: string;
   __v: number;
 }
+
+export interface LoginType {
+  email: string;
+  password: string;
+}
