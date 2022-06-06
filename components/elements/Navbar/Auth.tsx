@@ -1,12 +1,36 @@
-import Image from 'next/image';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
 import Link from 'next/link';
+import Router from 'next/router';
+import { useEffect, useState } from 'react';
+import { JWTPayloadTypes } from '../../../services/data-types';
 
-interface AuthProps {
-    isLogin?:boolean;
-}
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({
+    avatar: '',
+  });
 
-export default function Auth(props: Partial<AuthProps>) {
-  const { isLogin } = props;
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwt = atob(token);
+      const payload: JWTPayloadTypes = jwtDecode(jwt);
+      const userFromPayload = payload.player;
+      const IMG = process.env.NEXT_PUBLIC_IMG;
+      user.avatar = `${IMG}/${userFromPayload.avatar}`;
+
+      setIsLogin(true);
+      setUser(user);
+    }
+  });
+
+  const onLogout = () => {
+    Cookies.remove('token');
+    Router.push('/');
+    setIsLogin(false);
+  };
+
   if (isLogin) {
     return (
       <li className="nav-item my-auto dropdown d-flex">
@@ -20,22 +44,49 @@ export default function Auth(props: Partial<AuthProps>) {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <Image
-              src="/img/avatar-1.png"
+            <img
+              src={user.avatar}
               className="rounded-circle"
               width="40"
               height="40"
-              alt=""
+              alt="avatar"
             />
           </a>
 
-          <ul className="dropdown-menu border-0" aria-labelledby="dropdownMenuLink">
-            <li><Link href="/member"><a className="dropdown-item text-lg color-palette-2" href="#">My Profile</a></Link></li>
-            <li><Link href="/"><a className="dropdown-item text-lg color-palette-2" href="#">Wallet</a></Link></li>
+          <ul
+            className="dropdown-menu border-0"
+            aria-labelledby="dropdownMenuLink"
+          >
             <li>
-              <Link href="/member/edit-profile"><a className="dropdown-item text-lg color-palette-2" href="#">Account Settings</a></Link>
+              <Link href="/member">
+                <a className="dropdown-item text-lg color-palette-2" href="#">
+                  My Profile
+                </a>
+              </Link>
             </li>
-            <li><Link href="/sign-in"><a className="dropdown-item text-lg color-palette-2" href="#">Log Out</a></Link></li>
+            <li>
+              <Link href="/">
+                <a className="dropdown-item text-lg color-palette-2" href="#">
+                  Wallet
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/member/edit-profile">
+                <a className="dropdown-item text-lg color-palette-2" href="#">
+                  Account Settings
+                </a>
+              </Link>
+            </li>
+            <li>
+              <a
+                onClick={onLogout}
+                className="dropdown-item text-lg color-palette-2"
+                href="#"
+              >
+                Log Out
+              </a>
+            </li>
           </ul>
         </div>
       </li>
@@ -48,12 +99,9 @@ export default function Auth(props: Partial<AuthProps>) {
           className="btn btn-sign-in d-flex justify-content-center ms-lg-2 rounded-pill"
           role="button"
         >
-          Sign
-          In
-
+          Sign In
         </a>
       </Link>
     </li>
-
   );
 }

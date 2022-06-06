@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import setSignUp from '../services/auth';
 import { getGameCategory } from '../services/player';
 import 'react-toastify/dist/ReactToastify.css';
+import { CategoryTypes } from '../services/data-types';
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState('');
   const [image, setImage] = useState('');
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
   const [localForm, setLocaForm] = useState({
     name: '',
     email: '',
@@ -87,7 +88,7 @@ export default function SignUpPhoto() {
                     type="file"
                     name="avatar"
                     accept="image/png, image/jpeg"
-                    onChange={(e) => {
+                    onChange={(e: any) => {
                       setImage(e.target.files);
                       const img = e.target.files[0];
                       setImagePreview(URL.createObjectURL(img));
@@ -117,7 +118,7 @@ export default function SignUpPhoto() {
                   value={favorite}
                   onChange={(e) => setFavorite(e.target.value)}
                 >
-                  {categories.map((category) => (
+                  {categories.map((category: CategoryTypes) => (
                     <option key={category._id} value={category._id} selected>
                       {category.name}
                     </option>

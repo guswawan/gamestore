@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'js-cookie';
 import { setLogin } from '../../../services/auth';
 
 export default function SignInForm() {
@@ -24,6 +25,9 @@ export default function SignInForm() {
         toast.error(response.message);
       } else {
         toast.success('Login successful');
+        const { token } = response.data;
+        const tokenBase64 = btoa(token);
+        Cookies.set('token', tokenBase64, { expires: 1 });
         router.push('/');
       }
     }
@@ -45,8 +49,6 @@ export default function SignInForm() {
         <input
           type="email"
           className="form-control rounded-pill text-lg"
-          // id="email"
-          // name="email"
           aria-describedby="email"
           placeholder="Enter your email address"
           value={email}
@@ -63,8 +65,6 @@ export default function SignInForm() {
         <input
           type="password"
           className="form-control rounded-pill text-lg"
-          // id="password"
-          // name="password"
           aria-describedby="password"
           placeholder="Your password"
           value={password}
@@ -76,14 +76,12 @@ export default function SignInForm() {
           className="btn btn-sign-in fw-medium text-lg text-white rounded-pill mb-16"
           type="button"
           onClick={onSubmit}
-          // role="button"
         >
           Continue to Sign In
         </button>
         <Link href="../sign-up">
           <a
             className="btn btn-sign-up fw-medium text-lg color-palette-1 rounded-pill"
-            // href="../sign-up"sss
             role="button"
           >
             Sign Up
