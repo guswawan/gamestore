@@ -6,15 +6,17 @@ interface NominalItemProps {
   coinName: string;
   coinQuantity: number;
   price: number;
+  onChangeItem: () => void;
 }
 
 export default function NominalItem(props: NominalItemProps) {
-  const { _id, coinName, coinQuantity, price } = props;
+  const { _id, coinName, coinQuantity, price, onChangeItem } = props;
 
   return (
     <label
       className="col-lg-4 col-sm-6 ps-md-15 pe-md-15 pt-md-15 pb-md-15 pt-10 pb-10"
       htmlFor={_id}
+      onChange={onChangeItem}
     >
       <input
         className="d-none"

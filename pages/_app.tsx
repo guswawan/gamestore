@@ -17,6 +17,8 @@ import '../styles/edit-profile.css';
 import '../styles/navbar-log-in.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -38,7 +40,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
 
         {/* AOS Animation */}
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+        <link
+          href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+          rel="stylesheet"
+        />
 
         {/* Call bootstrap js */}
         <script
@@ -48,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <ToastContainer />
     </>
   );
 }

@@ -30,6 +30,7 @@
     "function-paren-newline": "off",
     "eslint-disable-next-line": "off",
     "implicit-arrow-linebreak": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "operator-linebreak": "warn"
   }
 }
