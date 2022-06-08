@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { setLogin } from '../../../services/auth';
 
@@ -28,7 +27,13 @@ export default function SignInForm() {
         const { token } = response.data;
         const tokenBase64 = btoa(token);
         Cookies.set('token', tokenBase64, { expires: 1 });
-        router.push('/');
+        const dataFromLocal = localStorage.getItem('data-topup');
+        const dataTopup = JSON.parse(dataFromLocal!);
+        if (dataTopup) {
+          router.push('/checkout');
+        } else {
+          router.push('/');
+        }
       }
     }
   };

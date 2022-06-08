@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import setSignUp from '../services/auth';
 import { getGameCategory } from '../services/player';
-// import 'react-toastify/dist/ReactToastify.css';
 import { CategoryTypes } from '../services/data-types';
 
 export default function SignUpPhoto() {

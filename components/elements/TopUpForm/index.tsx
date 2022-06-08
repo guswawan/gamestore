@@ -24,15 +24,14 @@ export default function TopUpForm(props: TopUpFormProps) {
 
   const onNominalItemChange = (data: NominalsType) => {
     setNominalItem(data);
-    // localStorage.setItem('nominal-item', JSON.stringify(data));
   };
+
   const onPaymentChange = (payment: PaymentType, bank: BanksType) => {
     const data = {
       payment,
       bank,
     };
     setPaymentItem(data);
-    // localStorage.setItem('nominal-item', JSON.stringify(data));
   };
 
   const onSubmit = () => {
@@ -137,8 +136,6 @@ export default function TopUpForm(props: TopUpFormProps) {
       </div>
       <div className="d-sm-block d-flex flex-column w-100">
         <button
-          // href="./checkout"
-          // role="button"
           type="button"
           className="btn btn-submit rounded-pill fw-medium text-white border-0 text-lg"
           onClick={onSubmit}

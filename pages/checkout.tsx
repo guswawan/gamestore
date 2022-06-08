@@ -3,15 +3,9 @@ import Image from 'next/image';
 import CheckoutConfirm from '../components/elements/CheckoutConfirm';
 import CheckoutDetail from '../components/elements/CheckoutDetail';
 import CheckoutItem from '../components/elements/CheckoutItem';
-import { JWTPayloadTypes, UserTypes } from '../services/data-types';
+import { JWTPayloadTypes } from '../services/data-types';
 
-interface CheckoutProps {
-  user: UserTypes;
-}
-export default function Checkout(props: CheckoutProps) {
-  const { user } = props;
-  console.log('USER', user);
-
+export default function Checkout() {
   return (
     <section className="checkout mx-auto pt-md-100 pb-md-145 pt-30 pb-30">
       <div className="container-fluid">
@@ -35,7 +29,15 @@ export default function Checkout(props: CheckoutProps) {
   );
 }
 
-export async function getServerSideProps({ req }) {
+interface getServerSidePropsType {
+  req: {
+    cookies: {
+      token: string;
+    };
+  };
+}
+
+export async function getServerSideProps({ req }: getServerSidePropsType) {
   const { token } = req.cookies;
 
   if (!token) {

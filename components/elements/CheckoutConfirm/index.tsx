@@ -1,11 +1,13 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { setCheckout } from '../../../services/player';
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
 export default function CheckoutConfirm() {
   const [checkbox, setCheckbox] = useState(false);
+  const router = useRouter();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const dataItemFromLocal = localStorage.getItem('data-item');
     const dataTopupFromLocal = localStorage.getItem('data-topup');
     const dataItem = JSON.parse(dataItemFromLocal!);
@@ -22,9 +24,19 @@ export default function CheckoutConfirm() {
         name: dataTopup.bankAccountName,
         accountUser: dataTopup.verifyID,
       };
-      console.log('SUBMIT', data);
+
+      const response = await setCheckout(data);
+      if (response.error) {
+        toast.error(response.message);
+      } else {
+        toast.success('Checkout has been successful');
+        router.push('/complete-checkout');
+        localStorage.removeItem('data-item');
+        localStorage.removeItem('data-topup');
+      }
     }
   };
+
   return (
     <>
       <label className="checkbox-label text-lg color-palette-1">
