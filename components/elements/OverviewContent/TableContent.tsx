@@ -1,23 +1,22 @@
 import cx from 'classnames';
+import NumberFormat from 'react-number-format';
 
 interface TableContentProps {
-    image: 'overview-1' | 'overview-2' | 'overview-3' | 'overview-4';
-    title: string;
-    category: string;
-    item: number;
-    price: number;
-    status: 'Pending' | 'Success' | 'Failed';
+  image: string;
+  title: string;
+  category: string;
+  item: string;
+  price: number;
+  status: string;
 }
 
 export default function TableContent(props: TableContentProps) {
-  const {
-    image, title, category, price, item, status,
-  } = props;
+  const { image, title, category, price, item, status } = props;
   const statusClass = cx({
     'float-start icon-status': true,
-    success: status === 'Success',
-    pending: status === 'Pending',
-    failed: status === 'Failed',
+    success: status === 'success',
+    pending: status === 'pending',
+    failed: status === 'failed',
   });
 
   return (
@@ -25,7 +24,7 @@ export default function TableContent(props: TableContentProps) {
       <th scope="row">
         <img
           className="float-start me-3 mb-lg-0 mb-3"
-          src={`/img/${image}.png`}
+          src={image}
           width="80"
           height="60"
           alt="cover-game"
@@ -34,18 +33,24 @@ export default function TableContent(props: TableContentProps) {
           <p className="game-title fw-medium text-start color-palette-1 m-0">
             {title}
           </p>
-          <p className="text-xs fw-normal text-start color-palette-2 m-0">{category}</p>
+          <p className="text-xs fw-normal text-start color-palette-2 m-0">
+            {category}
+          </p>
         </div>
       </th>
       <td>
-        <p className="fw-medium text-start color-palette-1 m-0">
-          {item}
-          {' '}
-          Gold
-        </p>
+        <p className="fw-medium text-start color-palette-1 m-0">{item}</p>
       </td>
       <td>
-        <p className="fw-medium text-start color-palette-1 m-0">{price}</p>
+        <p className="fw-medium text-start color-palette-1 m-0">
+          <NumberFormat
+            value={price}
+            prefix="Rp"
+            displayType="text"
+            decimalSeparator=","
+            thousandSeparator="."
+          />
+        </p>
       </td>
       <td>
         <div>

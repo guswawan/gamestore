@@ -1,13 +1,11 @@
 import jwtDecode from 'jwt-decode';
-import Sidebar from '../../../components/elements/Sidebar';
-import TransactionContent from '../../../components/elements/TransactionContent';
+import TransactionContentDetail from '../../../components/elements/TransactionContentDetail';
 import { JWTPayloadTypes } from '../../../services/data-types';
 
-export default function Transactions() {
+export default function detail() {
   return (
-    <section className="transactions overflow-auto">
-      <Sidebar activeMenu="transactions" />
-      <TransactionContent />
+    <section className="transactions-detail overflow-auto">
+      <TransactionContentDetail />
     </section>
   );
 }
