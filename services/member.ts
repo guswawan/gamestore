@@ -30,7 +30,7 @@ export async function getDataMemberTransactions(valueParams: string) {
 }
 
 export async function getTransactionsDetail(id: string, token: string) {
-  const url = `${ROOT_API}/${API_VERSION}/players/transaction-history?${id}/detail`;
+  const url = `${ROOT_API}/${API_VERSION}/players/transaction-history/${id}/detail`;
 
   return callAPI({
     url,

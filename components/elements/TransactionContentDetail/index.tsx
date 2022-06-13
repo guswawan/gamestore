@@ -1,10 +1,23 @@
+import { TransactionTypes } from '../../../services/data-types';
 import Row from './Row';
 
-export default function TransactionContentDetail() {
+interface TransactionDetailTypes {
+  data: TransactionTypes;
+}
+export default function TransactionContentDetail(
+  props: TransactionDetailTypes
+) {
+  const { data } = props;
+  const IMG = process.env.NEXT_PUBLIC_IMG;
+  const tax = data.historyVoucherTopup.price * (10 / 100);
+  const total = data.historyVoucherTopup.price + tax;
+
   return (
     <main className="main-wrapper">
       <div className="ps-lg-0">
-        <h2 className="text-4xl fw-bold color-palette-1 mb-30">Details #GG001</h2>
+        <h2 className="text-4xl fw-bold color-palette-1 mb-30">
+          Details #{data._id}
+        </h2>
         <div className="details">
           <div className="main-content main-content-card overflow-auto">
             <section className="checkout mx-auto">
@@ -13,7 +26,7 @@ export default function TransactionContentDetail() {
                   <div className="pe-4">
                     <div className="cropped">
                       <img
-                        src="/img/Thumbnail-3.png"
+                        src={`${IMG}/${data.historyVoucherTopup.thumbnail}`}
                         width="200"
                         height="130"
                         className="img-fluid"
@@ -23,36 +36,49 @@ export default function TransactionContentDetail() {
                   </div>
                   <div>
                     <p className="fw-bold text-xl color-palette-1 mb-10">
-                      Mobile Legends:
-                      <br />
-                      {' '}
-                      The New
-                      Battle 2021
+                      {data.historyVoucherTopup.gameName}
                     </p>
-                    <p className="color-palette-2 m-0">Category: Mobile</p>
+                    <p className="color-palette-2 m-0">
+                      Category: {data.historyVoucherTopup.category}
+                    </p>
                   </div>
                 </div>
                 <div>
-                  <p className="fw-medium text-center label pending m-0 rounded-pill">Pending</p>
+                  <p className="fw-medium text-center label pending m-0 rounded-pill">
+                    {data.status}
+                  </p>
                 </div>
               </div>
               <hr />
               <div className="purchase pt-30">
-                <h2 className="fw-bold text-xl color-palette-1 mb-20">Purchase Details</h2>
-                <Row label="Your Game ID" value="masayoshizero" />
-                <Row label="Order ID" value="#GG001" />
-                <Row label="Item" value="250 Diamonds" />
-                <Row label="Price" value={42280500} />
-                <Row label="Tax (10%)" value={42000} />
-                <Row label="Total" value={55000000} className="color-palette-4" />
+                <h2 className="fw-bold text-xl color-palette-1 mb-20">
+                  Purchase Details
+                </h2>
+                <Row label="Your Game ID" value={data.accountUser} />
+                <Row label="Order ID" value={`#${data._id}`} />
+                <Row
+                  label="Item"
+                  value={`${data.historyVoucherTopup.coinQuantity} ${data.historyVoucherTopup.coinName}`}
+                />
+                <Row label="Price" value={data.historyVoucherTopup.price} />
+                <Row label="Tax (10%)" value={tax} />
+                <Row label="Total" value={total} className="color-palette-4" />
               </div>
               <div className="payment pt-10 pb-10">
-                <h2 className="fw-bold text-xl color-palette-1 mb-20">Payment Informations</h2>
-                <Row label="Your Account Name" value="Masayoshi Angga Zero" />
-                <Row label="Type" value="Worldwide Transfer" />
-                <Row label="Bank Name" value="Mandiri" />
-                <Row label="Bank Account Name" value="PT Store GG Indonesia" />
-                <Row label="Bank Number" value="1800 - 9090 - 2021" />
+                <h2 className="fw-bold text-xl color-palette-1 mb-20">
+                  Payment Informations
+                </h2>
+                <Row label="Your Account Name" value={data.name} />
+                <Row label="Type" value={data.historyPayment.paymentType} />
+                <Row label="Bank Name" value={data.historyPayment.bankName} />
+                <Row
+                  label="Bank Account Name"
+                  value={data.historyPayment.name}
+                />
+                <Row
+                  label="Bank Number"
+                  value={data.historyPayment.accountNumber}
+                />
               </div>
               <div className="d-md-block d-flex flex-column w-100">
                 <a

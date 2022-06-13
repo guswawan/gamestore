@@ -64,17 +64,22 @@ export default function OverviewContent() {
                 </tr>
               </thead>
               <tbody>
-                {history.map((item: TransactionTypes) => (
-                  <TableContent
-                    key={item._id}
-                    title={item.historyVoucherTopup.gameName}
-                    category={item.historyVoucherTopup.category}
-                    item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
-                    price={item.value}
-                    image={`${IMG}/${item.historyVoucherTopup.thumbnail}`}
-                    status={item.status}
-                  />
-                ))}
+                {history.map((item: TransactionTypes) => {
+                  const tax = item.historyVoucherTopup.price * (10 / 100);
+                  const total = item.historyVoucherTopup.price + tax;
+
+                  return (
+                    <TableContent
+                      key={item._id}
+                      title={item.historyVoucherTopup.gameName}
+                      category={item.historyVoucherTopup.category}
+                      item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
+                      price={total}
+                      image={`${IMG}/${item.historyVoucherTopup.thumbnail}`}
+                      status={item.status}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>

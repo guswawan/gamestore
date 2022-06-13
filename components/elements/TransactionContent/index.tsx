@@ -93,18 +93,23 @@ export default function TransactionContent() {
                 </tr>
               </thead>
               <tbody id="list_status_item">
-                {history.map((item: TransactionTypes) => (
-                  <TableRow
-                    key={item._id}
-                    image={`${IMG}/${item.historyVoucherTopup.thumbnail}`}
-                    title={item.historyVoucherTopup.gameName}
-                    category={item.historyVoucherTopup.category}
-                    item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
-                    price={item.value}
-                    status={item.status}
-                    idDetail={item._id}
-                  />
-                ))}
+                {history.map((item: TransactionTypes) => {
+                  const tax = item.historyVoucherTopup.price * (10 / 100);
+                  const totalPrice = item.historyVoucherTopup.price + tax;
+
+                  return (
+                    <TableRow
+                      key={item._id}
+                      image={`${IMG}/${item.historyVoucherTopup.thumbnail}`}
+                      title={item.historyVoucherTopup.gameName}
+                      category={item.historyVoucherTopup.category}
+                      item={`${item.historyVoucherTopup.coinQuantity} ${item.historyVoucherTopup.coinName}`}
+                      price={totalPrice}
+                      status={item.status}
+                      idDetail={item._id}
+                    />
+                  );
+                })}
               </tbody>
             </table>
           </div>
