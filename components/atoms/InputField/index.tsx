@@ -1,14 +1,21 @@
 export interface InputFieldProps {
-    label: string;
-    placeholder: string;
+  label: string;
+  placeholder: string;
+  disabled?: boolean;
+  value?: string;
+  onChange?: () => void;
 }
 
-export default function InputField(props:InputFieldProps) {
-  const { label, placeholder, ...nativeProps } = props;
+export default function InputField(props: InputFieldProps) {
+  const { label, placeholder, disabled, value, onChange, ...nativeProps } =
+    props;
 
   return (
     <>
-      <label htmlFor="name" className="form-label text-lg fw-medium color-palette-1 mb-10">
+      <label
+        htmlFor="name"
+        className="form-label text-lg fw-medium color-palette-1 mb-10"
+      >
         {label}
       </label>
       <input
@@ -18,9 +25,11 @@ export default function InputField(props:InputFieldProps) {
         name="name"
         aria-describedby="name"
         placeholder={placeholder}
+        disabled={disabled}
+        value={value}
+        onChange={onChange}
         {...nativeProps}
       />
-
     </>
   );
 }
