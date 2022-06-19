@@ -17,13 +17,12 @@ export default function Auth() {
       const jwt = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwt);
       const userFromPayload = payload.player;
-      const IMG = process.env.NEXT_PUBLIC_IMG;
-      user.avatar = `${IMG}/${userFromPayload.avatar}`;
+      user.avatar = userFromPayload.avatar;
 
       setIsLogin(true);
       setUser(user);
     }
-  });
+  }, []);
 
   const onLogout = () => {
     Cookies.remove('token');
