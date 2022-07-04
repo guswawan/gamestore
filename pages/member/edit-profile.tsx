@@ -95,6 +95,7 @@ export default function EditProfile() {
                       type="file"
                       name="avatar"
                       accept="image/png, image/jpeg"
+                      disabled
                       onChange={(e: any) => {
                         const img = e.target.files[0];
                         setImagePreview(URL.createObjectURL(img));
