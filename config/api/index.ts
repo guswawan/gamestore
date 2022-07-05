@@ -36,7 +36,6 @@ export default async function callAPI({
     data,
     headers,
   }).catch((err) => err.response);
-  console.log('RES API', response);
 
   if (response.status > 300) {
     const res = {
@@ -49,8 +48,8 @@ export default async function callAPI({
 
   const res = {
     error: false,
-    message: response.data.message,
-    data: response.data.data,
+    message: response?.data?.message,
+    data: response?.data?.data,
   };
 
   return res;
