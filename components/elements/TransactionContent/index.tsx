@@ -23,7 +23,7 @@ export default function TransactionContent() {
   }, []);
 
   useEffect(() => {
-    fetchData('').catch(console.error);
+    fetchData('').catch(Error);
   }, []);
 
   const onClickTab = (value: string) => {

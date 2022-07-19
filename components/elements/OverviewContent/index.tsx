@@ -24,7 +24,7 @@ export default function OverviewContent() {
       }
     };
 
-    fetchData().catch(console.error);
+    fetchData().catch(Error);
   }, []);
 
   return (

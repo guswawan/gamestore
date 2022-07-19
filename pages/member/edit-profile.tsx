@@ -5,17 +5,17 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import InputField from '../../components/atoms/InputField';
 import Sidebar from '../../components/elements/Sidebar';
-import { JWTPayloadTypes } from '../../services/data-types';
+import { JWTPayloadTypes, UserTypes } from '../../services/data-types';
 import { updateProfile } from '../../services/member';
 
 export default function EditProfile() {
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<any>({
     id: '',
     name: '',
     avatar: '',
     email: '',
   });
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState<any>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function EditProfile() {
     if (token) {
       const jwtToken = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
-      const userFormPayload = payload.player;
+      const userFormPayload: UserTypes = payload.player;
       setUser(userFormPayload);
     }
   }, []);
@@ -40,6 +40,9 @@ export default function EditProfile() {
     } else {
       Cookies.remove('token');
       router.push('/sign-in');
+      toast.success(
+        'Profile updated successfully! Login again to see the changes.'
+      );
     }
   };
 
@@ -53,23 +56,6 @@ export default function EditProfile() {
             <div className="bg-card pt-30 ps-30 pe-30 pb-30">
               <form action="">
                 <div className="photo d-flex">
-                  {/* <div className="position-relative me-20">
-                    <img
-                      alt=""
-                      src="/img/avatar-1.png"
-                      width="90"
-                      height="90"
-                      className="avatar img-fluid"
-                    />
-                    <div className="avatar-overlay position-absolute top-0 d-flex justify-content-center align-items-center">
-                      <Image
-                        src="/icon/ic-trash.svg"
-                        alt="icon-upload"
-                        height={24}
-                        width={24}
-                      />
-                    </div>
-                  </div> */}
                   <div className="image-upload">
                     <label htmlFor="avatar">
                       {imagePreview ? (
@@ -120,12 +106,6 @@ export default function EditProfile() {
                     disabled
                   />
                 </div>
-                {/* <div className="pt-30">
-                  <InputField
-                    label="Phone"
-                    placeholder="Enter your phone number"
-                  />
-                </div> */}
                 <div className="button-group d-flex flex-column pt-50">
                   <button
                     type="button"

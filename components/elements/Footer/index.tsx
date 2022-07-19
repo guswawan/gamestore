@@ -10,88 +10,106 @@ export default function Footer() {
             <div className="col-lg-4 text-lg-start text-center">
               <Link href="/#">
                 <a className="mb-30">
-                  <Image src="/icon/logo.svg" width={60} height={60} alt="logo" />
+                  <Image
+                    src="/icon/logo.svg"
+                    width={60}
+                    height={60}
+                    alt="logo"
+                  />
                 </a>
               </Link>
               <p className="mt-30 text-lg color-palette-1 mb-30">
-                StoreGG membantu gamers
+                Gamestore membantu gamers
                 <br />
                 untuk menjadi pemenang sejati
               </p>
-              <p className="mt-30 text-lg color-palette-1 mb-30">Copyright 2021. All Rights Reserved.</p>
+              <p className="mt-30 text-lg color-palette-1 mb-30">
+                Copyright 2022. All Rights Reserved.
+              </p>
             </div>
             <div className="col-lg-8 mt-lg-0 mt-20">
               <div className="row gap-sm-0">
                 <div className="col-md-4 col-6 mb-lg-0 mb-25">
-                  <p className="text-lg fw-semibold color-palette-1 mb-12">Company</p>
+                  <p className="text-lg fw-semibold color-palette-1 mb-12">
+                    Company
+                  </p>
                   <ul className="list-unstyled">
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">About Us</a>
-                    </li>
-                    <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">
-                        Press
-                        Release
-
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        About Us
                       </a>
                     </li>
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">Terms of Use</a>
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        Terms of Use
+                      </a>
                     </li>
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">
-                        Privacy &
-                        Policy
-
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        Privacy & Policy
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div className="col-md-4 col-6 mb-lg-0 mb-25">
-                  <p className="text-lg fw-semibold color-palette-1 mb-12">Support</p>
+                  <p className="text-lg fw-semibold color-palette-1 mb-12">
+                    Support
+                  </p>
                   <ul className="list-unstyled">
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">
-                        Refund
-                        Policy
-
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        Refund Policy
                       </a>
                     </li>
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">
-                        Unlock
-                        Rewards
-
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        Unlock Rewards
                       </a>
                     </li>
                     <li className="mb-6">
-                      <a href="/#" className="text-lg color-palette-1 text-decoration-none">
-                        Live
-                        Chatting
-
+                      <a
+                        href="/#"
+                        className="text-lg color-palette-1 text-decoration-none"
+                      >
+                        Live Chatting
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div className="col-md-4 col-12 mt-lg-0 mt-md-0 mt-25">
-                  <p className="text-lg fw-semibold color-palette-1 mb-12">Connect</p>
+                  <p className="text-lg fw-semibold color-palette-1 mb-12">
+                    Connect
+                  </p>
                   <ul className="list-unstyled">
                     <li className="mb-6">
                       <a
-                        href="mailto: hi@store.gg"
+                        href="mailto: hi@game.store"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        hi@store.gg
-
+                        hi@game.store
                       </a>
                     </li>
                     <li className="mb-6">
                       <a
-                        href="mailto: team@store.gg"
+                        href="mailto: team@game.store"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        team@store.gg
-
+                        team@game.store
                       </a>
                     </li>
                     <li className="mb-6">
@@ -100,20 +118,15 @@ export default function Footer() {
                                         Jakarta Selatan"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        Pasific
-                        12,
-                        Jakarta Selatan
-
+                        Pasific 12, Jakarta Selatan
                       </a>
                     </li>
                     <li className="mb-6">
                       <a
-                        href="tel: 02111229090"
+                        href="tel: 021-112290"
                         className="text-lg color-palette-1 text-decoration-none"
                       >
-                        021 - 1122 -
-                        9090
-
+                        021 - 1122 - 90
                       </a>
                     </li>
                   </ul>

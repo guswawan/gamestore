@@ -1,14 +1,11 @@
-export interface InputFieldProps {
+import { InputHTMLAttributes } from 'react';
+
+export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  placeholder: string;
-  disabled?: boolean;
-  value?: string;
-  onChange?: () => void;
 }
 
 export default function InputField(props: InputFieldProps) {
-  const { label, placeholder, disabled, value, onChange, ...nativeProps } =
-    props;
+  const { label, ...nativeProps } = props;
 
   return (
     <>
@@ -24,10 +21,6 @@ export default function InputField(props: InputFieldProps) {
         id="name"
         name="name"
         aria-describedby="name"
-        placeholder={placeholder}
-        disabled={disabled}
-        value={value}
-        onChange={onChange}
         {...nativeProps}
       />
     </>
